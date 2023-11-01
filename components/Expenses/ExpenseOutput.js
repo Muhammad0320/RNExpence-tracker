@@ -39,11 +39,11 @@ const DUMMY_DATA = [
   },
 ];
 
-function ExpenseOutput({ expence, periodName }) {
+function ExpenseOutput({ expense, periodName }) {
   return (
     <View>
-      <ExpenseSummary expence={DUMMY_DATA} periodName={periodName} />
-      <ExpenseList expence={DUMMY_DATA} />
+      <ExpenseSummary expense={DUMMY_DATA} periodName={periodName} />
+      <ExpenseList expense={DUMMY_DATA} />
     </View>
   );
 }
