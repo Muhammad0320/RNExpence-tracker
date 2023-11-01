@@ -24,7 +24,11 @@ export default function App() {
 
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="ExoenseOverview" component={ExpenseOverview} />
+          <Stack.Screen
+            name="ExoenseOverview"
+            component={ExpenseOverview}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="ManageExpense" component={ManageExpense} />
         </Stack.Navigator>
       </NavigationContainer>
