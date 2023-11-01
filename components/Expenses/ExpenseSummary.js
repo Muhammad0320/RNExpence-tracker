@@ -8,7 +8,7 @@ function ExpenseSummary({ expense, periodName }) {
   return (
     <View>
       <Text> {periodName} </Text>
-      <Text> ${totalExpencePrice} </Text>
+      <Text> ${totalExpencePrice.toFixed(2)} </Text>
     </View>
   );
 }
