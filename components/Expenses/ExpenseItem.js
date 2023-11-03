@@ -1,4 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+} from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 import { dateFormatter } from "../../utils/dateFormat";
 import { useNavigation } from "@react-navigation/native";
@@ -11,22 +17,25 @@ function ExpenseItem({ amount, date, description }) {
   };
 
   return (
-    <Pressable
-      onPress={handlePressExpenseItem}
-      style={({ pressed }) => pressed && style.pressed}
-      android_ripple={{ color: GlobalStyles.colors.primary400 }}
+    <TouchableNativeFeedback
+      background={TouchableNativeFeedback.Ripple("#000", true)}
     >
-      <View style={style.contaner}>
-        <View style={style.descriptionContainer}>
-          <Text style={style.descText}> {description} </Text>
-          <Text style={style.descText}> {dateFormatter(date)} </Text>
-        </View>
+      <Pressable
+        onPress={handlePressExpenseItem}
+        style={({ pressed }) => pressed && style.pressed}
+      >
+        <View style={style.contaner}>
+          <View style={style.descriptionContainer}>
+            <Text style={style.descText}> {description} </Text>
+            <Text style={style.descText}> {dateFormatter(date)} </Text>
+          </View>
 
-        <View style={style.amountContainer}>
-          <Text styl={style.amountText}> {amount.toFixed(2)} </Text>
+          <View style={style.amountContainer}>
+            <Text styl={style.amountText}> ${amount.toFixed(2)} </Text>
+          </View>
         </View>
-      </View>
-    </Pressable>
+      </Pressable>
+    </TouchableNativeFeedback>
   );
 }
 
@@ -35,9 +44,11 @@ export default ExpenseItem;
 const style = StyleSheet.create({
   pressed: {
     opacity: 0.75,
+    overflow: "hidden",
   },
 
   contaner: {
+    overflow: "hidden",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -68,7 +79,7 @@ const style = StyleSheet.create({
 
   amountText: {
     color: GlobalStyles.colors.primary800,
-    fontWeight: 800,
+    fontWeight: "bold",
     fontSize: 12,
   },
 

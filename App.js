@@ -23,12 +23,13 @@ export default function App() {
         headerTintColor: "#fff",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
+
         headerRight: ({ tintColor }) => (
           <Icon
-            color={tintColor}
             name="add"
+            color={tintColor}
             size={24}
-            onPress={navigation.navigate("ManageExpense")}
+            onPress={() => navigation.navigate("ManageExpense")}
           />
         ),
       })}
