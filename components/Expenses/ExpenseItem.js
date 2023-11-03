@@ -52,8 +52,9 @@ const style = StyleSheet.create({
   },
 
   amountText: {
-    color: GlobalStyles.colors.primary700,
-    fontWeight: "bold",
+    color: GlobalStyles.colors.primary800,
+    fontWeight: 800,
+    fontSize: 12,
   },
 
   amountContainer: {
@@ -61,7 +62,10 @@ const style = StyleSheet.create({
     marginVertical: 8,
     paddingVertical: 6,
     paddingHorizontal: 4,
+
     borderRadius: 6,
     minWidth: 80,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

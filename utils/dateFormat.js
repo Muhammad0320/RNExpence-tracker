@@ -1,3 +1,3 @@
 export const dateFormatter = (date) => {
-  return `${date.getFullYear()}-${data.getMonth() + 1}-${date.getDate()} `;
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} `;
 };
