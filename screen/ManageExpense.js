@@ -4,13 +4,11 @@ import { Text } from "react-native";
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
 
-  const isEditing = !!editedId;
-
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? "Edit Expense" : "Add Expense",
+      title: editedId ? "Edit Expense" : "Add Expense",
     });
-  }, [navigation, isEditing]);
+  }, [navigation, editedId]);
 
   return <Text> ManageExpense screen </Text>;
 }
