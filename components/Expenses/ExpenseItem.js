@@ -9,11 +9,11 @@ import { GlobalStyles } from "../../constants/styles";
 import { dateFormatter } from "../../utils/dateFormat";
 import { useNavigation } from "@react-navigation/native";
 
-function ExpenseItem({ amount, date, description }) {
+function ExpenseItem({ id, amount, date, description }) {
   const navigation = useNavigation();
 
   const handlePressExpenseItem = () => {
-    navigation.navigate("ManageExpense");
+    navigation.navigate("ManageExpense", { id });
   };
 
   return (
