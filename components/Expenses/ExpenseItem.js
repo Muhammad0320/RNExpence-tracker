@@ -23,6 +23,7 @@ function ExpenseItem({ amount, date, description }) {
       <Pressable
         onPress={handlePressExpenseItem}
         style={({ pressed }) => pressed && style.pressed}
+        android_ripple={{ color: "#ccc" }}
       >
         <View style={style.contaner}>
           <View style={style.descriptionContainer}>
