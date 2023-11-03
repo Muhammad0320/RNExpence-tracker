@@ -14,11 +14,17 @@ function ManageExpense({ navigation, route }) {
     });
   }, [navigation, editedId]);
 
-  const deleteButtonHandler = () => {};
+  const deleteButtonHandler = () => {
+    navigation.goBack();
+  };
 
-  const confirmButtonHandler = () => {};
+  const confirmButtonHandler = () => {
+    navigation.goBack();
+  };
 
-  const cancelButtonHandler = () => {};
+  const cancelButtonHandler = () => {
+    navigation.goBack();
+  };
 
   return (
     <View style={style.container}>
