@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 const ExpenseContext = createContext({
   expenses: [],
@@ -9,3 +9,12 @@ const ExpenseContext = createContext({
 
   deleteExpenseItem: (id) => {},
 });
+
+export const useExpenseContext = () => {
+  const context = useContext(ExpenseContext);
+
+  if (!context)
+    throw Error("Expense context was used outside expense provider");
+
+  return context;
+};
