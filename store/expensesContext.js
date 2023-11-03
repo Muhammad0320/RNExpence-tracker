@@ -1,4 +1,41 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useReducer } from "react";
+
+const DUMMY_DATA = [
+  {
+    id: "e1",
+    description: " A pair of trouser ",
+    amount: 112.09,
+    date: new Date("2023-10-25"),
+  },
+
+  {
+    id: "e2",
+    description: " A new Shoe ",
+    amount: 62.09,
+    date: new Date("2023-10-20"),
+  },
+
+  {
+    id: "e3",
+    description: " A Book ",
+    amount: 12.0,
+    date: new Date("2023-08-29"),
+  },
+
+  {
+    id: "e4",
+    description: " Another Book ",
+    amount: 26.09,
+    date: new Date("2023-10-10"),
+  },
+
+  {
+    id: "e5",
+    description: " A Notepad ",
+    amount: 5.0,
+    date: new Date("2023-10-21"),
+  },
+];
 
 const ExpenseContext = createContext({
   expenses: [],
@@ -9,6 +46,48 @@ const ExpenseContext = createContext({
 
   deleteExpenseItem: (id) => {},
 });
+
+const expenseReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD":
+      const id = Math.random().toString() + Date.now().toString();
+
+      return [...state, { ...action.payload, id }];
+
+    case "UPDATE":
+      const updateExpenseIndex = state.findIndex(
+        (expense) => expense.id === action.payload.id
+      );
+
+      const updatableExpense = state[updateExpenseIndex];
+
+      const updateItem = { ...updatableExpense, ...action.payload.data };
+
+      const updatedExpense = [...state];
+
+      updatedExpense[updateExpenseIndex] = updateItem;
+
+      return updatedExpense;
+
+    case "DELETE":
+      return state.filter((expense) => expense.id !== action.payload);
+
+    default:
+      [...state];
+  }
+};
+
+const ExpenseContextProvider = ({ children }) => {
+  const [expenseState, dispatch] = useReducer(expenseReducer, DUMMY_DATA);
+
+  const addExpense = [];
+
+  const updateExpense = [];
+
+  const deleteExpense = [];
+
+  return <ExpenseContext.Provider>{children}</ExpenseContext.Provider>;
+};
 
 export const useExpenseContext = () => {
   const context = useContext(ExpenseContext);
