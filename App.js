@@ -8,6 +8,7 @@ import RecentExpenses from "./screen/RecentExpenses";
 import { GlobalStyles } from "./constants/styles";
 
 import { Ionicons } from "@expo/vector-icons";
+import Icon from "./components/ui/Icon";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,9 @@ export default function App() {
         headerTintColor: "#fff",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        headerRight: ({ tintColor }) => (
+          <Icon color={tintColor} name="add" size={24} />
+        ),
       }}
     >
       <Tabs.Screen
