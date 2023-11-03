@@ -8,6 +8,7 @@ function Button({ children, onPress, style, mode }) {
       <Pressable
         onPress={onPress}
         style={({ pressed }) => pressed && styles.pressed}
+        // android_ripple={{ color: Glo }}
       >
         <View
           style={[
@@ -41,16 +42,18 @@ const styles = StyleSheet.create({
   },
 
   textStyle: {
-    fontSize: 14,
+    fontSize: 20,
     color: GlobalStyles.colors.primary100,
+    textAlign: "center",
   },
 
   textFlat: {
-    color: "#fff",
+    color: "#ccc",
   },
 
   pressed: {
+    overflow: "hidden",
     opacity: 0.75,
-    backgroundColor: GlobalStyles.colors.primary200,
+    // backgroundColor: GlobalStyles.colors.primary200,
   },
 });

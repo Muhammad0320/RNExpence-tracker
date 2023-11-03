@@ -33,7 +33,7 @@ function ManageExpense({ navigation, route }) {
         </Button>
         <Button style={style.buttonStyle} onPress={confirmButtonHandler}>
           {" "}
-          {editedId ? "Edit Expense" : "Add Expense"}{" "}
+          {editedId ? "Edit " : "Add "}{" "}
         </Button>
       </View>
 
@@ -52,6 +52,7 @@ export default ManageExpense;
 
 const style = StyleSheet.create({
   buttonContainer: {
+    flexDirection: "row",
     columnGap: 20,
     alignContent: "center",
   },
