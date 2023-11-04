@@ -20,4 +20,11 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary700,
   },
+
+  textStyle: {
+    fontSize: 16,
+    color: "white",
+    textAlign: "center",
+    marginTop: 36,
+  },
 });
