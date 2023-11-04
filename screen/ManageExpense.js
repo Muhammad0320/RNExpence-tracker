@@ -64,9 +64,12 @@ function ManageExpense({ navigation, route }) {
 
       {editedId && (
         <View style={style.deleteContainer}>
-          <Pressable onPress={deleteButtonHandler}>
-            <Icon color={GlobalStyles.colors.error500} size={36} name="trash" />
-          </Pressable>
+          <Icon
+            onPress={deleteButtonHandler}
+            color={GlobalStyles.colors.error500}
+            size={36}
+            name="trash"
+          />
         </View>
       )}
     </View>
