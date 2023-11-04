@@ -4,10 +4,13 @@ import { View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import Icon from "../components/ui/Icon";
 import Button from "../components/ui/Button";
+import { useExpenseContext } from "../store/expensesContext";
 
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
 
+  const { deleteExpenseItem, addExpenseItem, updateExpenseItem } =
+    useExpenseContext();
   useLayoutEffect(() => {
     navigation.setOptions({
       title: editedId ? "Edit Expense" : "Add Expense",
@@ -15,10 +18,26 @@ function ManageExpense({ navigation, route }) {
   }, [navigation, editedId]);
 
   const deleteButtonHandler = () => {
+    deleteExpenseItem(editedId);
+
     navigation.goBack();
   };
 
   const confirmButtonHandler = () => {
+    if (editedId) {
+      updateExpenseItem(editedId, {
+        description: "Test Data",
+        amount: 2000,
+        date: Date.now(2023, 12, 10),
+      });
+    } else {
+      addExpenseItem({
+        description: "Test Data!!!",
+        amount: 5000,
+        date: Date.now(2023, 11, 10),
+      });
+    }
+
     navigation.goBack();
   };
 
