@@ -35,6 +35,27 @@ const DUMMY_DATA = [
     amount: 5.0,
     date: new Date("2023-10-21"),
   },
+
+  {
+    id: "e6",
+    description: " A Book ",
+    amount: 32.0,
+    date: new Date("2023-11-01"),
+  },
+
+  {
+    id: "e7",
+    description: " Another Book ",
+    amount: 21.09,
+    date: new Date("2023-11-02"),
+  },
+
+  {
+    id: "e8",
+    description: " A Notepad ",
+    amount: 51.0,
+    date: new Date("2023-11-03"),
+  },
 ];
 
 const ExpenseContext = createContext({
@@ -82,6 +103,8 @@ export const ExpenseContextProvider = ({ children }) => {
 
   const addExpense = (data) => {
     dispatch({ type: "ADD", payload: data });
+
+    console.log(data);
   };
 
   const updateExpense = (id, data) => {
@@ -90,6 +113,7 @@ export const ExpenseContextProvider = ({ children }) => {
 
   const deleteExpense = (id) => {
     dispatch({ type: "DELETE", payload: id });
+    console.log("deleted from context ");
   };
 
   return (
