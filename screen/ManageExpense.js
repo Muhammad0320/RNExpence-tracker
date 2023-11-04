@@ -17,12 +17,6 @@ function ManageExpense({ navigation, route }) {
     });
   }, [navigation, editedId]);
 
-  const deleteButtonHandler = () => {
-    console.log("deleted from context ");
-    deleteExpenseItem(editedId);
-    navigation.goBack();
-  };
-
   const confirmButtonHandler = () => {
     if (editedId) {
       updateExpenseItem(editedId, {
@@ -45,6 +39,12 @@ function ManageExpense({ navigation, route }) {
     navigation.goBack();
   };
 
+  const deleteButtonHandler = () => {
+    console.log("deleted from context ");
+    deleteExpenseItem(editedId);
+    navigation.goBack();
+  };
+
   return (
     <View style={style.container}>
       <View style={style.buttonContainer}>
@@ -64,7 +64,7 @@ function ManageExpense({ navigation, route }) {
 
       {editedId && (
         <View style={style.deleteContainer}>
-          <Pressable onPress={() => deleteButtonHandler()}>
+          <Pressable onPress={deleteButtonHandler}>
             <Icon color={GlobalStyles.colors.error500} size={36} name="trash" />
           </Pressable>
         </View>
@@ -76,7 +76,7 @@ function ManageExpense({ navigation, route }) {
 export default ManageExpense;
 
 const style = StyleSheet.create({
-  PressableContainer: {
+  buttonContainer: {
     flexDirection: "row",
     columnGap: 20,
     alignContent: "center",

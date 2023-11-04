@@ -103,8 +103,6 @@ export const ExpenseContextProvider = ({ children }) => {
 
   const addExpense = (data) => {
     dispatch({ type: "ADD", payload: data });
-
-    console.log(data);
   };
 
   const updateExpense = (id, data) => {
@@ -112,8 +110,8 @@ export const ExpenseContextProvider = ({ children }) => {
   };
 
   const deleteExpense = (id) => {
-    dispatch({ type: "DELETE", payload: id });
     console.log("deleted from context ");
+    dispatch({ type: "DELETE", payload: id });
   };
 
   return (
