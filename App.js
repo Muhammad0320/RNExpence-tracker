@@ -9,6 +9,7 @@ import { GlobalStyles } from "./constants/styles";
 
 import { Ionicons } from "@expo/vector-icons";
 import Icon from "./components/ui/Icon";
+import { ExpenseContextProvider } from "./store/expensesContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,7 +61,7 @@ export default function App() {
   );
 
   return (
-    <>
+    <ExpenseContextProvider>
       <StatusBar style="auto" />
 
       <NavigationContainer>
@@ -86,6 +87,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+    </ExpenseContextProvider>
   );
 }
