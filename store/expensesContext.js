@@ -73,7 +73,7 @@ const expenseReducer = (state, action) => {
       return state.filter((expense) => expense.id !== action.payload);
 
     default:
-      [...state];
+      return state;
   }
 };
 
