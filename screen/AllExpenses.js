@@ -1,7 +1,10 @@
 import ExpenseOutput from "../components/Expenses/ExpenseOutput";
+import { useExpenseContext } from "../store/expensesContext";
 
 function AllExpenses() {
-  return <ExpenseOutput periodName="All Expense " />;
+  const { expenses } = useExpenseContext();
+
+  return <ExpenseOutput expense={expenses} periodName="All Expense " />;
 }
 
 export default AllExpenses;
