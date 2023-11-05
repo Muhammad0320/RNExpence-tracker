@@ -18,7 +18,15 @@ function ExpensesForm({ onConfirm, onCancel, buttonText }) {
     });
   };
 
-  const handleConfirm = () => {};
+  const handleConfirm = () => {
+    const expenseData = {
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+      description: inputValues.description,
+    };
+
+    onConfirm(expenseData);
+  };
 
   return (
     <>
