@@ -9,6 +9,10 @@ import ExpensesForm from "../components/ManageExpense/ExpensesForm";
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
 
+  const { expenses } = useExpenseContext();
+
+  const selectedExpense = expenses.find((expense) => expense.id === editedId);
+
   const { deleteExpenseItem, addExpenseItem, updateExpenseItem } =
     useExpenseContext();
   useLayoutEffect(() => {
@@ -42,6 +46,7 @@ function ManageExpense({ navigation, route }) {
         onCancel={cancelButtonHandler}
         onConfirm={confirmButtonHandler}
         buttonText={editedId ? "Edit " : "Add "}
+        selectedExpense={selectedExpense}
       />
 
       {editedId && (
