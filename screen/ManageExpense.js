@@ -3,7 +3,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import Icon from "../components/ui/Icon";
-import Button from "../components/ui/Button";
+
 import { useExpenseContext } from "../store/expensesContext";
 import ExpensesForm from "../components/ManageExpense/ExpensesForm";
 
@@ -41,28 +41,17 @@ function ManageExpense({ navigation, route }) {
   };
 
   const deleteButtonHandler = () => {
-    console.log("deleted from context ");
     deleteExpenseItem(editedId);
     navigation.goBack();
   };
 
   return (
     <View style={style.container}>
-      <ExpensesForm />
-      <View style={style.buttonContainer}>
-        <Button
-          style={style.buttonStyle}
-          mode="flat"
-          onPress={cancelButtonHandler}
-        >
-          {" "}
-          cancel{" "}
-        </Button>
-        <Button style={style.buttonStyle} onPress={confirmButtonHandler}>
-          {" "}
-          {editedId ? "Edit " : "Add "}{" "}
-        </Button>
-      </View>
+      <ExpensesForm
+        onCancel={cancelButtonHandler}
+        onConfirm={confirmButtonHandler}
+        buttonText={editedId ? "Edit " : "Add "}
+      />
 
       {editedId && (
         <View style={style.deleteContainer}>
@@ -81,16 +70,6 @@ function ManageExpense({ navigation, route }) {
 export default ManageExpense;
 
 const style = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    columnGap: 20,
-    alignContent: "center",
-  },
-
-  buttonStyle: {
-    minWidth: 150,
-  },
-
   container: {
     flex: 1,
     backgroundColor: GlobalStyles.colors.primary800,
