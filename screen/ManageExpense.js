@@ -1,9 +1,8 @@
-import { useLayoutEffect } from "react";
-import { Pressable, StyleSheet } from "react-native";
 import { View } from "react-native";
-import { GlobalStyles } from "../constants/styles";
+import { useLayoutEffect } from "react";
 import Icon from "../components/ui/Icon";
-
+import { StyleSheet } from "react-native";
+import { GlobalStyles } from "../constants/styles";
 import { useExpenseContext } from "../store/expensesContext";
 import ExpensesForm from "../components/ManageExpense/ExpensesForm";
 
@@ -18,19 +17,11 @@ function ManageExpense({ navigation, route }) {
     });
   }, [navigation, editedId]);
 
-  const confirmButtonHandler = () => {
+  const confirmButtonHandler = (expenseData) => {
     if (editedId) {
-      updateExpenseItem(editedId, {
-        description: "Test Data",
-        amount: 2000,
-        date: new Date("2023-12-10"),
-      });
+      updateExpenseItem(editedId, expenseData);
     } else {
-      addExpenseItem({
-        description: "Test Data!!!",
-        amount: 5000,
-        date: new Date("2023-11-10"),
-      });
+      addExpenseItem(expenseData);
     }
 
     navigation.goBack();
