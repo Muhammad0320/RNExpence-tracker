@@ -6,7 +6,7 @@ function RecentExpenses() {
   const { expenses } = useExpenseContext();
 
   const last7daysDate = calcDatePast(new Date(), 7);
-
+  
   const recentExpense = expenses.filter(
     (expense) => expense.date >= last7daysDate
   );

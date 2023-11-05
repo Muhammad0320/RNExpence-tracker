@@ -14,3 +14,4 @@ export const GlobalStyles = {
     gray700: "#221c30",
   },
 };
+
