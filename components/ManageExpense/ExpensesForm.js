@@ -29,6 +29,7 @@ function ExpensesForm() {
             KeyboardType: "decimal-pad",
 
             onChangeText: () => handleTextInput("amount"),
+            value: inputValues.amount,
           }}
         />
         <Inputs
@@ -38,6 +39,7 @@ function ExpensesForm() {
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: () => handleTextInput("date"),
+            value: inputValues.date,
           }}
         />
       </View>
@@ -49,6 +51,7 @@ function ExpensesForm() {
           autoCorrect: true,
           autoCapitalize: "sentences",
           onChangeText: () => handleTextInput("description"),
+          value: inputValues.description,
         }}
       />
     </View>
