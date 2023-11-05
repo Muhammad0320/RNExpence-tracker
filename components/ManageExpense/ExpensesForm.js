@@ -10,9 +10,9 @@ function ExpensesForm() {
   });
 
   const handleTextInput = (inputIdentifier, inputValue) => {
-    setInputValues((inputValues) => {
+    setInputValues((currentValues) => {
       return {
-        ...inputValues,
+        ...currentValues,
         [inputIdentifier]: inputValue,
       };
     });
