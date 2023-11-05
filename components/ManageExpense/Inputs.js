@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   },
 
   inputStyle: {
+    borderRadius: 6,
     fontSize: 18,
     backgroundColor: GlobalStyles.colors.primary100,
     padding: 7,

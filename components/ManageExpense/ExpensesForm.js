@@ -21,7 +21,7 @@ function ExpensesForm() {
         inputConfig={{
           multiline: true,
           autoCorrect: true,
-          autoCapitalize: "sentense",
+          autoCapitalize: "sentences",
         }}
       />
     </View>

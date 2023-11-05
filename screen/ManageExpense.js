@@ -5,6 +5,7 @@ import { GlobalStyles } from "../constants/styles";
 import Icon from "../components/ui/Icon";
 import Button from "../components/ui/Button";
 import { useExpenseContext } from "../store/expensesContext";
+import ExpensesForm from "../components/ManageExpense/ExpensesForm";
 
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
@@ -47,6 +48,7 @@ function ManageExpense({ navigation, route }) {
 
   return (
     <View style={style.container}>
+      <ExpensesForm />
       <View style={style.buttonContainer}>
         <Button
           style={style.buttonStyle}
