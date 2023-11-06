@@ -1,13 +1,14 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Inputs from "./Inputs";
 import { useState } from "react";
 import { dateFormatter } from "../../utils/dateFormat";
+import Button from "../ui/Button";
 
 function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
   const [inputValues, setInputValues] = useState({
-    amount: selectedExpense.amount + "" ?? "",
-    date: dateFormatter(selectedExpense.date) ?? "",
-    description: selectedExpense.description ?? "",
+    amount: selectedExpense ? selectedExpense.amount.toString() : "",
+    date: selectedExpense ? dateFormatter(selectedExpense.date) : "",
+    description: selectedExpense ? selectedExpense.description : "",
   });
 
   const handleTextInput = (inputIdentifier, inputValue) => {
@@ -26,6 +27,8 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
       description: inputValues.description,
     };
 
+    console.log(expenseData);
+
     onConfirm(expenseData);
   };
 
@@ -40,8 +43,8 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
             inputConfig={{
               KeyboardType: "decimal-pad",
 
-              onChangeText: () => handleTextInput("amount"),
-              value: inputValues.amount,
+              onChangeText: handleTextInput.bind(this, "amount"),
+              defaultValue: inputValues.amount,
             }}
           />
           <Inputs
@@ -50,20 +53,20 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
             inputConfig={{
               placeholder: "YYYY-MM-DD",
               maxLength: 10,
-              onChangeText: () => handleTextInput("date"),
-              value: inputValues.date,
+              onChangeText: handleTextInput.bind(this, "date"),
+              defaultValue: inputValues.date,
             }}
           />
         </View>
 
         <Inputs
-          label="description"
+          label="Description"
           inputConfig={{
             multiline: true,
             autoCorrect: true,
             autoCapitalize: "sentences",
-            onChangeText: () => handleTextInput("description"),
-            value: inputValues.description,
+            onChangeText: handleTextInput.bind(this, "description"),
+            defaultValue: inputValues.description,
           }}
         />
       </View>

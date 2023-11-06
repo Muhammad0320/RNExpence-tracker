@@ -110,7 +110,6 @@ export const ExpenseContextProvider = ({ children }) => {
   };
 
   const deleteExpense = (id) => {
-    console.log("deleted from context ");
     dispatch({ type: "DELETE", payload: id });
   };
 
