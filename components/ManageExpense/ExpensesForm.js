@@ -39,11 +39,13 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
 
     const { amount, date, description } = expenseData;
 
-    const isValidAmount = Number.isFinite(amount) && amount;
+    const isValidAmount = Number.isFinite(amount) && amount > 0;
 
     const isValidDate = date.toString() !== "Invalid Date";
 
-    const isValidDescription = description.trim.length;
+    const isValidDescription = description.trim().length > 0;
+
+    console.log(isValidAmount, isValidDescription, isValidDate);
 
     if (!isValidAmount || !isValidDate || !isValidDescription) {
       setInputs((inputs) => {
@@ -53,7 +55,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
           date: { value: inputs.date.value, isValid: isValidDate },
 
           description: {
-            value: inputs.date.value,
+            value: inputs.description.value,
             isValid: isValidDescription,
           },
         };
@@ -100,7 +102,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
 
         <Inputs
           label="Description"
-          invalid={!amount.isValid}
+          invalid={!description.isValid}
           inputConfig={{
             multiline: true,
             autoCorrect: true,
@@ -111,7 +113,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
         />
       </View>
 
-      {formIsValid && (
+      {!formIsValid && (
         <Text style={styles.errorText}>
           {" "}
           Invalid input | please check your input data{" "}
@@ -169,6 +171,6 @@ const styles = StyleSheet.create({
   errorText: {
     color: GlobalStyles.colors.error500,
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 18,
   },
 });
