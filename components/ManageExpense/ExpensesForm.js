@@ -1,20 +1,20 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Inputs from "./Inputs";
 import { useState } from "react";
 import { dateFormatter } from "../../utils/dateFormat";
 import Button from "../ui/Button";
 
 function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
-  const [inputValues, setInputValues] = useState({
+  const [inputs, setInputs] = useState({
     amount: selectedExpense ? selectedExpense.amount.toString() : "",
     date: selectedExpense ? dateFormatter(selectedExpense.date) : "",
     description: selectedExpense ? selectedExpense.description : "",
   });
 
   const handleTextInput = (inputIdentifier, inputValue) => {
-    setInputValues((currentValues) => {
+    setInputs((currents) => {
       return {
-        ...currentValues,
+        ...currents,
         [inputIdentifier]: inputValue,
       };
     });
@@ -22,9 +22,9 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
 
   const handleConfirm = () => {
     const expenseData = {
-      amount: +inputValues.amount,
-      date: new Date(inputValues.date),
-      description: inputValues.description,
+      amount: +inputs.amount,
+      date: new Date(inputs.date),
+      description: inputs.description,
     };
 
     const { amount, date, description } = expenseData;
@@ -36,8 +36,6 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
     const isValidDescription = description.trim.length;
 
     if (!isValidAmount || !isValidDate || !isValidDescription) {
-      Alert.alert("Invalid Input", "please check your inputs texts");
-
       return;
     }
 
@@ -56,7 +54,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
               KeyboardType: "decimal-pad",
 
               onChangeText: handleTextInput.bind(this, "amount"),
-              defaultValue: inputValues.amount,
+              defaultValue: inputs.amount,
             }}
           />
           <Inputs
@@ -66,7 +64,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
               placeholder: "YYYY-MM-DD",
               maxLength: 10,
               onChangeText: handleTextInput.bind(this, "date"),
-              defaultValue: inputValues.date,
+              defaultValue: inputs.date,
             }}
           />
         </View>
@@ -78,7 +76,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
             autoCorrect: true,
             autoCapitalize: "sentences",
             onChangeText: handleTextInput.bind(this, "description"),
-            defaultValue: inputValues.description,
+            defaultValue: inputs.description,
           }}
         />
       </View>
