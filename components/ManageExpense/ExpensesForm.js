@@ -6,25 +6,34 @@ import Button from "../ui/Button";
 
 function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
   const [inputs, setInputs] = useState({
-    amount: selectedExpense ? selectedExpense.amount.toString() : "",
-    date: selectedExpense ? dateFormatter(selectedExpense.date) : "",
-    description: selectedExpense ? selectedExpense.description : "",
+    amount: {
+      value: selectedExpense ? selectedExpense.amount.toString() : "",
+      isValid: true,
+    },
+    date: {
+      value: selectedExpense ? dateFormatter(selectedExpense.date) : "",
+      isValid: true,
+    },
+    description: {
+      value: selectedExpense ? selectedExpense.description : "",
+      isValid: true,
+    },
   });
 
-  const handleTextInput = (inputIdentifier, inputValue) => {
+  const handleTextInput = (inputIdentifier, inputs) => {
     setInputs((currents) => {
       return {
         ...currents,
-        [inputIdentifier]: inputValue,
+        [inputIdentifier]: { value: inputs },
       };
     });
   };
 
   const handleConfirm = () => {
     const expenseData = {
-      amount: +inputs.amount,
-      date: new Date(inputs.date),
-      description: inputs.description,
+      amount: +inputs.amount.value,
+      date: new Date(inputs.date.value),
+      description: inputs.description.value,
     };
 
     const { amount, date, description } = expenseData;
@@ -36,11 +45,28 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
     const isValidDescription = description.trim.length;
 
     if (!isValidAmount || !isValidDate || !isValidDescription) {
+      setInputs((inputs) => {
+        return {
+          amount: { value: inputs.amount.value, isValid: isValidAmount },
+
+          date: { value: inputs.date.value, isValid: isValidDate },
+
+          description: {
+            value: inputs.date.value,
+            isValid: isValidDescription,
+          },
+        };
+      });
+
       return;
     }
 
     onConfirm(expenseData);
   };
+
+  const { amount, date, description } = inputs;
+
+  const formIsValid = !date.isValid || !amount.isValid || !description.isValid;
 
   return (
     <>
@@ -54,7 +80,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
               KeyboardType: "decimal-pad",
 
               onChangeText: handleTextInput.bind(this, "amount"),
-              defaultValue: inputs.amount,
+              defaultValue: inputs.amount.value,
             }}
           />
           <Inputs
@@ -64,7 +90,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
               placeholder: "YYYY-MM-DD",
               maxLength: 10,
               onChangeText: handleTextInput.bind(this, "date"),
-              defaultValue: inputs.date,
+              defaultValue: inputs.date.value,
             }}
           />
         </View>
@@ -76,10 +102,14 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
             autoCorrect: true,
             autoCapitalize: "sentences",
             onChangeText: handleTextInput.bind(this, "description"),
-            defaultValue: inputs.description,
+            defaultValue: inputs.description.value,
           }}
         />
       </View>
+
+      {formIsValid && (
+        <Text> Invalid input | please check your input data </Text>
+      )}
 
       <View style={styles.buttonContainer}>
         <Button style={styles.buttonStyle} mode="flat" onPress={onCancel}>
