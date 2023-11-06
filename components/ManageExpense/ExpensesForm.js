@@ -76,6 +76,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
           <Inputs
             label="Amount"
             style={styles.inputStyle}
+            invalid={!amount.isValid}
             inputConfig={{
               KeyboardType: "decimal-pad",
 
@@ -85,6 +86,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
           />
           <Inputs
             label="Date"
+            invalid={!date.isValid}
             style={styles.inputStyle}
             inputConfig={{
               placeholder: "YYYY-MM-DD",
@@ -97,6 +99,7 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
 
         <Inputs
           label="Description"
+          invalid={!amount.isValid}
           inputConfig={{
             multiline: true,
             autoCorrect: true,
@@ -108,7 +111,10 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
       </View>
 
       {formIsValid && (
-        <Text> Invalid input | please check your input data </Text>
+        <Text style={styles.errorText}>
+          {" "}
+          Invalid input | please check your input data{" "}
+        </Text>
       )}
 
       <View style={styles.buttonContainer}>
@@ -157,5 +163,11 @@ const styles = StyleSheet.create({
 
   buttonStyle: {
     minWidth: 150,
+  },
+
+  errorText: {
+    color: "red",
+    textAlign: "center",
+    fontSize: 15,
   },
 });
