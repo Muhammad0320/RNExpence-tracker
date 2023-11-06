@@ -3,6 +3,7 @@ import Inputs from "./Inputs";
 import { useState } from "react";
 import { dateFormatter } from "../../utils/dateFormat";
 import Button from "../ui/Button";
+import { GlobalStyles } from "../../constants/styles";
 
 function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
   const [inputs, setInputs] = useState({
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
   },
 
   errorText: {
-    color: "red",
+    color: GlobalStyles.colors.error500,
     textAlign: "center",
     fontSize: 15,
   },
