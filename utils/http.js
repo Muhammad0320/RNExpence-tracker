@@ -19,5 +19,20 @@ export const getExpensesApi = async () => {
 
   console.log(res.data);
 
-  return res.data;
+  const expenses = [];
+
+  for (const key in res.data) {
+    const expenseObj = {
+      id: key,
+      date: new Date(res.data[key].date),
+
+      amount: res.data[key].amount,
+
+      description: res.data[key].description,
+    };
+
+    expenses.push(expenseObj);
+  }
+
+  return expenses;
 };
