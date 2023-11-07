@@ -1,4 +1,6 @@
 export const dateFormatter = (date) => {
+  console.log(date, "Error odeh");
+
   return date.toISOString().slice(0, 10);
 };
 

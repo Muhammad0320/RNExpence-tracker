@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import { useExpenseContext } from "../store/expensesContext";
 import ExpensesForm from "../components/ManageExpense/ExpensesForm";
-import { createExpense } from "../utils/http";
+import { createExpense, updateExpenseApi } from "../utils/http";
 
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
@@ -24,6 +24,7 @@ function ManageExpense({ navigation, route }) {
   const confirmButtonHandler = async (expenseData) => {
     if (editedId) {
       updateExpenseItem(editedId, expenseData);
+      await updateExpenseApi(editedId, expenseData);
     } else {
       const id = await createExpense(expenseData);
 
