@@ -66,6 +66,8 @@ const ExpenseContext = createContext({
   updateExpenseItem: (id, { description, date, amount }) => {},
 
   deleteExpenseItem: (id) => {},
+
+  fetchExpenseData: (data) => {},
 });
 
 const expenseReducer = (state, action) => {
@@ -127,7 +129,7 @@ export const ExpenseContextProvider = ({ children }) => {
         addExpenseItem: addExpense,
         updateExpenseItem: updateExpense,
         deleteExpenseItem: deleteExpense,
-        fetchExpense: fetchExpense,
+        fetchExpenseData: fetchExpense,
       }}
     >
       {children}
