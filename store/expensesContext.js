@@ -1,62 +1,62 @@
 import { createContext, useContext, useReducer } from "react";
 
-const DUMMY_DATA = [
-  {
-    id: "e1",
-    description: " A pair of trouser ",
-    amount: 112.09,
-    date: new Date("2023-10-25"),
-  },
+// const DUMMY_DATA = [
+//   {
+//     id: "e1",
+//     description: " A pair of trouser ",
+//     amount: 112.09,
+//     date: new Date("2023-10-25"),
+//   },
 
-  {
-    id: "e2",
-    description: " A new Shoe ",
-    amount: 62.09,
-    date: new Date("2023-10-20"),
-  },
+//   {
+//     id: "e2",
+//     description: " A new Shoe ",
+//     amount: 62.09,
+//     date: new Date("2023-10-20"),
+//   },
 
-  {
-    id: "e3",
-    description: " A Book ",
-    amount: 12.0,
-    date: new Date("2023-08-29"),
-  },
+//   {
+//     id: "e3",
+//     description: " A Book ",
+//     amount: 12.0,
+//     date: new Date("2023-08-29"),
+//   },
 
-  {
-    id: "e4",
-    description: " Another Book ",
-    amount: 26.09,
-    date: new Date("2023-10-10"),
-  },
+//   {
+//     id: "e4",
+//     description: " Another Book ",
+//     amount: 26.09,
+//     date: new Date("2023-10-10"),
+//   },
 
-  {
-    id: "e5",
-    description: " A Notepad ",
-    amount: 5.0,
-    date: new Date("2023-10-21"),
-  },
+//   {
+//     id: "e5",
+//     description: " A Notepad ",
+//     amount: 5.0,
+//     date: new Date("2023-10-21"),
+//   },
 
-  {
-    id: "e6",
-    description: " A Book ",
-    amount: 32.0,
-    date: new Date("2023-11-01"),
-  },
+//   {
+//     id: "e6",
+//     description: " A Book ",
+//     amount: 32.0,
+//     date: new Date("2023-11-01"),
+//   },
 
-  {
-    id: "e7",
-    description: " Another Book ",
-    amount: 21.09,
-    date: new Date("2023-11-02"),
-  },
+//   {
+//     id: "e7",
+//     description: " Another Book ",
+//     amount: 21.09,
+//     date: new Date("2023-11-02"),
+//   },
 
-  {
-    id: "e8",
-    description: " A Notepad ",
-    amount: 51.0,
-    date: new Date("2023-11-03"),
-  },
-];
+//   {
+//     id: "e8",
+//     description: " A Notepad ",
+//     amount: 51.0,
+//     date: new Date("2023-11-03"),
+//   },
+// ];
 
 const ExpenseContext = createContext({
   expenses: [],
@@ -102,7 +102,7 @@ const expenseReducer = (state, action) => {
 };
 
 export const ExpenseContextProvider = ({ children }) => {
-  const [expenseState, dispatch] = useReducer(expenseReducer, DUMMY_DATA);
+  const [expenseState, dispatch] = useReducer(expenseReducer, []);
 
   const addExpense = (data) => {
     dispatch({ type: "ADD", payload: data });
