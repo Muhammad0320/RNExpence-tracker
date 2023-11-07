@@ -75,7 +75,7 @@ const expenseReducer = (state, action) => {
 
       return [...state, { ...action.payload, id }];
 
-    case "GETALL":
+    case "FETCH":
       return action.payload;
 
     case "UPDATE":
@@ -116,8 +116,8 @@ export const ExpenseContextProvider = ({ children }) => {
     dispatch({ type: "DELETE", payload: id });
   };
 
-  const getAllExpense = (expense) => {
-    dispatch({ type: "GETALL", payload: expense });
+  const fetchExpense = (expense) => {
+    dispatch({ type: "FETCH", payload: expense });
   };
 
   return (
@@ -127,7 +127,7 @@ export const ExpenseContextProvider = ({ children }) => {
         addExpenseItem: addExpense,
         updateExpenseItem: updateExpense,
         deleteExpenseItem: deleteExpense,
-        getAllExpense: getAllExpense,
+        fetchExpense: fetchExpense,
       }}
     >
       {children}
