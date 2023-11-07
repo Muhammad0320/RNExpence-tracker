@@ -6,8 +6,6 @@ import { getExpensesApi } from "../utils/http";
 function AllExpenses() {
   const { expenses, fetchExpenseData } = useExpenseContext();
 
-  console.log(expenses, "Okay");
-
   useEffect(() => {
     const fetchFunc = async () => {
       const expenses = await getExpensesApi();
