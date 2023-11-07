@@ -5,7 +5,11 @@ import { StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
 import { useExpenseContext } from "../store/expensesContext";
 import ExpensesForm from "../components/ManageExpense/ExpensesForm";
-import { createExpense, updateExpenseApi } from "../utils/http";
+import {
+  createExpense,
+  deleteExpenseApi,
+  updateExpenseApi,
+} from "../utils/http";
 
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
@@ -38,8 +42,11 @@ function ManageExpense({ navigation, route }) {
     navigation.goBack();
   };
 
-  const deleteButtonHandler = () => {
+  const deleteButtonHandler = async () => {
+    await deleteExpenseApi(editedId);
+
     deleteExpenseItem(editedId);
+
     navigation.goBack();
   };
 
