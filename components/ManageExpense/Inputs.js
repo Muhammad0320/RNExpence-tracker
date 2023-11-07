@@ -10,13 +10,13 @@ function Inputs({ inputConfig, label, style, invalid }) {
     inputStyle.push(styles.inputMultiline);
   }
 
-  if (invalid) {
+  if (!invalid) {
     inputStyle.push(styles.errorInput);
   }
 
   return (
     <View style={[styles.inputContainer, style]}>
-      <Text style={[styles.label, invalid && styles.errorLabel]}>
+      <Text style={[styles.label, !invalid && styles.errorLabel]}>
         {" "}
         {label}{" "}
       </Text>
