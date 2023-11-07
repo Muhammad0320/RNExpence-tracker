@@ -73,12 +73,10 @@ const ExpenseContext = createContext({
 const expenseReducer = (state, action) => {
   switch (action.type) {
     case "ADD":
-      const id = Math.random().toString() + Date.now().toString();
-
-      return [{ ...action.payload, id }, ...state];
+      return [action.payload, ...state];
 
     case "FETCH":
-      const data = action.payload?.reverse;
+      const data = action.payload?.reverse();
       return data;
 
     case "UPDATE":
