@@ -32,7 +32,11 @@ export const getExpensesApi = async () => {
     expenses.push(expenseObj);
   }
 
-  console.log(expenses);
-
   return expenses;
+};
+
+export const deleteExpenseApi = async (id) => {
+  const res = await axios.delete(`${BASE_URL}/expense/${id}.json`);
+
+  return res.data;
 };
