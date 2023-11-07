@@ -40,3 +40,9 @@ export const deleteExpenseApi = async (id) => {
 
   return res.data;
 };
+
+export const updateExpenseApi = async (id, data) => {
+  const res = await axios.put(`${BASE_URL}/expense/${id}.json`, data);
+
+  return res.data;
+};
