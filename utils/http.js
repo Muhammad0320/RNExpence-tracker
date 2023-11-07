@@ -14,7 +14,7 @@ export const createExpense = async (expense) => {
   return res.data;
 };
 
-export const getExpenses = async () => {
+export const getExpensesApi = async () => {
   const res = await axios.get(`${BASE_URL}/expense.json`);
 
   console.log(res.data);
