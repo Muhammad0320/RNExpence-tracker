@@ -11,7 +11,7 @@ export const createExpense = async (expense) => {
     },
   });
 
-  return res.data.expense.name;
+  return res.data?.name;
 };
 
 export const getExpensesApi = async () => {
