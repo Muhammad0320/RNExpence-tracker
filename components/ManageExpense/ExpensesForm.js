@@ -45,8 +45,6 @@ function ExpensesForm({ onConfirm, onCancel, buttonText, selectedExpense }) {
 
     const isValidDescription = description.trim().length > 0;
 
-    console.log(isValidAmount, isValidDescription, isValidDate);
-
     if (!isValidAmount || !isValidDate || !isValidDescription) {
       setInputs((inputs) => {
         return {

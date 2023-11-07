@@ -75,10 +75,11 @@ const expenseReducer = (state, action) => {
     case "ADD":
       const id = Math.random().toString() + Date.now().toString();
 
-      return [...state, { ...action.payload, id }];
+      return [{ ...action.payload, id }, ...state];
 
     case "FETCH":
-      return action.payload;
+      const data = action.payload?.reverse;
+      return data;
 
     case "UPDATE":
       const updateExpenseIndex = state.findIndex(

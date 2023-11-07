@@ -10,12 +10,11 @@ import { createExpense } from "../utils/http";
 function ManageExpense({ navigation, route }) {
   const editedId = route.params?.id;
 
-  const { expenses } = useExpenseContext();
+  const { expenses, deleteExpenseItem, addExpenseItem, updateExpenseItem } =
+    useExpenseContext();
 
   const selectedExpense = expenses.find((expense) => expense.id === editedId);
 
-  const { deleteExpenseItem, addExpenseItem, updateExpenseItem } =
-    useExpenseContext();
   useLayoutEffect(() => {
     navigation.setOptions({
       title: editedId ? "Edit Expense" : "Add Expense",
@@ -26,8 +25,11 @@ function ManageExpense({ navigation, route }) {
     if (editedId) {
       updateExpenseItem(editedId, expenseData);
     } else {
-      addExpenseItem(expenseData);
-      await createExpense(expenseData);
+      const id = await createExpense(expenseData);
+
+      console.log(id);
+
+      addExpenseItem({ ...expenseData, id });
     }
 
     navigation.goBack();
