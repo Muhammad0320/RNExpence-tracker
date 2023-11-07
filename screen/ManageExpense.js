@@ -27,8 +27,6 @@ function ManageExpense({ navigation, route }) {
     } else {
       const id = await createExpense(expenseData);
 
-      console.log(id, "As id");
-
       addExpenseItem({ ...expenseData, id });
     }
 
