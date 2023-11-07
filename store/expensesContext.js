@@ -75,6 +75,9 @@ const expenseReducer = (state, action) => {
 
       return [...state, { ...action.payload, id }];
 
+    case "GETALL":
+      return action.payload;
+
     case "UPDATE":
       const updateExpenseIndex = state.findIndex(
         (expense) => expense.id === action.payload.id
@@ -113,6 +116,10 @@ export const ExpenseContextProvider = ({ children }) => {
     dispatch({ type: "DELETE", payload: id });
   };
 
+  const getAllExpense = (expense) => {
+    dispatch({ type: "GETALL", payload: expense });
+  };
+
   return (
     <ExpenseContext.Provider
       value={{
@@ -120,6 +127,7 @@ export const ExpenseContextProvider = ({ children }) => {
         addExpenseItem: addExpense,
         updateExpenseItem: updateExpense,
         deleteExpenseItem: deleteExpense,
+        getAllExpense: getAllExpense,
       }}
     >
       {children}

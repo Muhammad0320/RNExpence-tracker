@@ -17,22 +17,22 @@ export const createExpense = async (expense) => {
 export const getExpensesApi = async () => {
   const res = await axios.get(`${BASE_URL}/expense.json`);
 
-  console.log(res.data);
-
   const expenses = [];
 
   for (const key in res.data) {
     const expenseObj = {
       id: key,
-      date: new Date(res.data[key].date),
+      date: new Date(res.data[key]?.expense?.date),
 
-      amount: res.data[key].amount,
+      amount: res.data[key]?.expense?.amount,
 
-      description: res.data[key].description,
+      description: res.data[key]?.expense?.description,
     };
 
     expenses.push(expenseObj);
   }
+
+  console.log(expenses);
 
   return expenses;
 };
