@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ExpenseOutput from "../components/Expenses/ExpenseOutput";
 import { useExpenseContext } from "../store/expensesContext";
 import { getExpensesApi } from "../utils/http";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 function AllExpenses() {
   const [isFetching, setIsFetching] = useState(true);
@@ -19,6 +20,10 @@ function AllExpenses() {
 
     fetchFunc();
   }, []);
+
+  if (isFetching) {
+    <LoadingOverlay />;
+  }
 
   return (
     <ExpenseOutput
