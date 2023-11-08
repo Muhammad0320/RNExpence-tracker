@@ -11,6 +11,7 @@ import {
   updateExpenseApi,
 } from "../utils/http";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
+import ErrorOverlay from "../components/ui/ErrorOverlay";
 
 function ManageExpense({ navigation, route }) {
   const [isFetching, setIsFetching] = useState(false);
@@ -68,6 +69,10 @@ function ManageExpense({ navigation, route }) {
     }
     setIsFetching(false);
   };
+
+  if (!isFetching && error) {
+    return <ErrorOverlay message={error} />;
+  }
 
   if (isFetching) {
     return <LoadingOverlay />;
