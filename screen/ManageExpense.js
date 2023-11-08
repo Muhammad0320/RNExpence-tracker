@@ -15,6 +15,8 @@ import LoadingOverlay from "../components/ui/LoadingOverlay";
 function ManageExpense({ navigation, route }) {
   const [isFetching, setIsFetching] = useState(false);
 
+  const [error, setError] = useState(null);
+
   const editedId = route.params?.id;
 
   const { expenses, deleteExpenseItem, addExpenseItem, updateExpenseItem } =
@@ -29,20 +31,24 @@ function ManageExpense({ navigation, route }) {
   }, [navigation, editedId]);
 
   const confirmButtonHandler = async (expenseData) => {
-    if (editedId) {
-      setIsFetching(true);
-      updateExpenseItem(editedId, expenseData);
-      await updateExpenseApi(editedId, expenseData);
-      setIsFetching(false);
-    } else {
-      setIsFetching(true);
-      const id = await createExpense(expenseData);
-      setIsFetching(false);
+    try {
+      if (editedId) {
+        setIsFetching(true);
+        await updateExpenseApi(editedId, expenseData);
 
-      addExpenseItem({ ...expenseData, id });
+        updateExpenseItem(editedId, expenseData);
+        setIsFetching(false);
+      } else {
+        setIsFetching(true);
+        const id = await createExpense(expenseData);
+        setIsFetching(false);
+
+        addExpenseItem({ ...expenseData, id });
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not save data - Please try again");
     }
-
-    navigation.goBack();
   };
 
   const cancelButtonHandler = () => {
