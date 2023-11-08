@@ -1,4 +1,5 @@
 export const dateFormatter = (date) => {
+  console.log(date, "Okay");
   return date.toISOString().slice(0, 10);
 };
 

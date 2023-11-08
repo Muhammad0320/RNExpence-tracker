@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import Icon from "../components/ui/Icon";
 import { StyleSheet } from "react-native";
 import { GlobalStyles } from "../constants/styles";
@@ -13,7 +13,7 @@ import {
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 function ManageExpense({ navigation, route }) {
-  const [isFetching, setIsFetching] = useState(true);
+  const [isFetching, setIsFetching] = useState(false);
 
   const editedId = route.params?.id;
 
