@@ -41,10 +41,10 @@ function ManageExpense({ navigation, route }) {
       } else {
         setIsFetching(true);
         const id = await createExpense(expenseData);
-        setIsFetching(false);
 
         addExpenseItem({ ...expenseData, id });
       }
+      setIsFetching(false);
       navigation.goBack();
     } catch (error) {
       setError("Could not save data - Please try again");
@@ -56,13 +56,17 @@ function ManageExpense({ navigation, route }) {
   };
 
   const deleteButtonHandler = async () => {
-    setIsFetching(true);
-    await deleteExpenseApi(editedId);
+    try {
+      setIsFetching(true);
+      await deleteExpenseApi(editedId);
+
+      deleteExpenseItem(editedId);
+
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not delete expense - please try again");
+    }
     setIsFetching(false);
-
-    deleteExpenseItem(editedId);
-
-    navigation.goBack();
   };
 
   if (isFetching) {
