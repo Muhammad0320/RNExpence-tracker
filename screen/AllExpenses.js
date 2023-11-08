@@ -22,7 +22,7 @@ function AllExpenses() {
   }, []);
 
   if (isFetching) {
-    <LoadingOverlay />;
+    return <LoadingOverlay />;
   }
 
   return (

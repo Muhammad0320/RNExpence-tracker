@@ -10,6 +10,7 @@ import {
   deleteExpenseApi,
   updateExpenseApi,
 } from "../utils/http";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
 
 function ManageExpense({ navigation, route }) {
   const [isFetching, setIsFetching] = useState(true);
@@ -57,6 +58,10 @@ function ManageExpense({ navigation, route }) {
 
     navigation.goBack();
   };
+
+  if (isFetching) {
+    return <LoadingOverlay />;
+  }
 
   return (
     <View style={style.container}>
