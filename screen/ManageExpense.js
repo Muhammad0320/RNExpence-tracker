@@ -12,6 +12,8 @@ import {
 } from "../utils/http";
 
 function ManageExpense({ navigation, route }) {
+  const [isFetching, setIsFetching] = useState(true);
+
   const editedId = route.params?.id;
 
   const { expenses, deleteExpenseItem, addExpenseItem, updateExpenseItem } =
@@ -27,10 +29,14 @@ function ManageExpense({ navigation, route }) {
 
   const confirmButtonHandler = async (expenseData) => {
     if (editedId) {
+      setIsFetching(true);
       updateExpenseItem(editedId, expenseData);
       await updateExpenseApi(editedId, expenseData);
+      setIsFetching(false);
     } else {
+      setIsFetching(true);
       const id = await createExpense(expenseData);
+      setIsFetching(false);
 
       addExpenseItem({ ...expenseData, id });
     }
@@ -43,7 +49,9 @@ function ManageExpense({ navigation, route }) {
   };
 
   const deleteButtonHandler = async () => {
+    setIsFetching(true);
     await deleteExpenseApi(editedId);
+    setIsFetching(false);
 
     deleteExpenseItem(editedId);
 
